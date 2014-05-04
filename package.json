@@ -1,0 +1,29 @@
+{
+  "name": "sequelize-fixture",
+  "version": "0.0.1",
+  "description": "util for building sequelize model fixtures, mostly useful for setting up test data.",
+  "keywords": [
+    "factory",
+    "test",
+    "fixture",
+    "fixtures",
+    "rosie",
+    "factory_girl"
+  ],
+  "author": "Dejian Xu<xudejian2008@gmail.com>",
+  "contributors": [],
+  "dependencies": {
+    "casual": "~1.4.6"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "sequelize": "~1.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xudejian/sequelize-factory.git"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha"
+  }
+}
