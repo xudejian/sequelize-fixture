@@ -13,6 +13,8 @@ describe('.fixtures', function () {
     text: Sequelize.TEXT,
     bool: Sequelize.BOOLEAN,
     num: Sequelize.INTEGER,
+    bignum: Sequelize.BIGINT,
+    float: Sequelize.FLOAT,
     date: Sequelize.DATE,
   });
 
@@ -55,7 +57,17 @@ describe('.fixtures', function () {
 
       it('should generate TEXT', function () {
         var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.string, 'string');
+        assert.equal(typeof fixture.text, 'string');
+      });
+
+      it('should generate BIGINT', function () {
+        var fixture = Foo.fixtures();
+        assert.equal(typeof fixture.bignum, 'number');
+      });
+
+      it('should generate FLOAT', function () {
+        var fixture = Foo.fixtures();
+        assert.equal(typeof fixture.float, 'number');
       });
 
     });
