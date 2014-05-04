@@ -32,44 +32,50 @@ describe('.fixtures', function () {
     it('should generate fixture base on define of Model', function () {
       var fixture = Foo.fixtures();
       assert.ok(fixture.title);
+      assert.ok(fixture.string);
+      assert.ok(fixture.text);
+      assert.ok(fixture.hasOwnProperty('bool'));
+      assert.ok(fixture.num);
+      assert.ok(fixture.bignum);
+      assert.ok(fixture.float);
+      assert.ok(fixture.date);
+    });
+  });
+
+  describe('DataTypes support', function () {
+    it('STRING', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.string, 'string');
     });
 
-    describe('define', function() {
-      it('should generate STRING', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.string, 'string');
-      });
+    it('BOOLEAN', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.bool, 'boolean');
+    });
 
-      it('should generate BOOLEAN', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.bool, 'boolean');
-      });
+    it('INTEGER', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.num, 'number');
+    });
 
-      it('should generate INTEGER', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.num, 'number');
-      });
+    it('DATE', function () {
+      var fixture = Foo.fixtures();
+      assert.ok(fixture.date instanceof Date);
+    });
 
-      it('should generate DATE', function () {
-        var fixture = Foo.fixtures();
-        assert.ok(fixture.date instanceof Date);
-      });
+    it('TEXT', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.text, 'string');
+    });
 
-      it('should generate TEXT', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.text, 'string');
-      });
+    it('BIGINT', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.bignum, 'number');
+    });
 
-      it('should generate BIGINT', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.bignum, 'number');
-      });
-
-      it('should generate FLOAT', function () {
-        var fixture = Foo.fixtures();
-        assert.equal(typeof fixture.float, 'number');
-      });
-
+    it('FLOAT', function () {
+      var fixture = Foo.fixtures();
+      assert.equal(typeof fixture.float, 'number');
     });
   });
 
