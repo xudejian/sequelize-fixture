@@ -57,6 +57,19 @@ describe('Models', function () {
       var fixture = Foo.fixtures();
       assert.equal(fixture.url.substr(0,4).toLowerCase(), 'http');
     });
+
+    it('should generate email when user defined it in sequelize', function () {
+      var Foo = sequelize.define('Foo', {
+        email: {
+          type: Sequelize.STRING,
+          validate: {
+            isEmail: true
+          }
+        }
+      });
+      var fixture = Foo.fixtures();
+      assert.ok(fixture.email.indexOf('@') > 0);
+    });
   });
 
 });
