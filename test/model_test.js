@@ -44,6 +44,19 @@ describe('Models', function () {
       var fixture = Foo.fixtures({gen_auto_increment: true});
       assert.ok(fixture.id);
     });
+
+    it('should generate url when user defined it in sequelize', function () {
+      var Foo = sequelize.define('Foo', {
+        url: {
+          type: Sequelize.STRING,
+          validate: {
+            isUrl: true
+          }
+        }
+      });
+      var fixture = Foo.fixtures();
+      assert.equal(fixture.url.substr(0,4).toLowerCase(), 'http');
+    });
   });
 
 });
