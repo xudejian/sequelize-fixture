@@ -8,7 +8,7 @@ describe('Models', function () {
   'use strict';
 
   var Foo = sequelize.define('Foo', {
-    title: Sequelize.STRING,
+    title: Sequelize.STRING(64),
     string: Sequelize.STRING,
     text: Sequelize.TEXT,
     bool: Sequelize.BOOLEAN,
@@ -29,6 +29,11 @@ describe('Models', function () {
       assert.ok(fixture.bignum);
       assert.ok(fixture.float);
       assert.ok(fixture.date);
+    });
+
+    it('should not generate pri keys', function () {
+      var fixture = Foo.fixtures();
+      assert.throws(fixture.id);
     });
   });
 
