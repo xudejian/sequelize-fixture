@@ -7,20 +7,20 @@ var Sequelize = require('sequelize'),
 describe('Models', function () {
   'use strict';
 
-  var Foo = sequelize.define('Foo', {
-    title: Sequelize.STRING(64),
-    string: Sequelize.STRING,
-    text: Sequelize.TEXT,
-    bool: Sequelize.BOOLEAN,
-    num: Sequelize.INTEGER,
-    bignum: Sequelize.BIGINT,
-    float: Sequelize.FLOAT,
-    date: Sequelize.DATE,
-    uuid: Sequelize.UUID,
-  });
-
   describe('.fixtures', function () {
     it('should generate fixture base on define of Model', function () {
+      var Foo = sequelize.define('Foo', {
+        title: Sequelize.STRING(64),
+        string: Sequelize.STRING,
+        text: Sequelize.TEXT,
+        bool: Sequelize.BOOLEAN,
+        num: Sequelize.INTEGER,
+        bignum: Sequelize.BIGINT,
+        float: Sequelize.FLOAT,
+        date: Sequelize.DATE,
+        uuid: Sequelize.UUID,
+      });
+
       var fixture = Foo.fixtures();
       assert.ok(fixture.title);
       assert.ok(fixture.string);
@@ -34,11 +34,13 @@ describe('Models', function () {
     });
 
     it('should not generate autoIncrement keys', function () {
+      var Foo = sequelize.define('Foo', {});
       var fixture = Foo.fixtures();
       assert.equal(fixture.id, null);
     });
 
     it('should generate autoIncrement keys when user want', function () {
+      var Foo = sequelize.define('Foo', {});
       var fixture = Foo.fixtures({gen_auto_increment: true});
       assert.ok(fixture.id);
     });
