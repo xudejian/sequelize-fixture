@@ -16,6 +16,7 @@ describe('Models', function () {
     bignum: Sequelize.BIGINT,
     float: Sequelize.FLOAT,
     date: Sequelize.DATE,
+    uuid: Sequelize.UUID,
   });
 
   describe('.fixtures', function () {
@@ -29,11 +30,17 @@ describe('Models', function () {
       assert.ok(fixture.bignum);
       assert.ok(fixture.float);
       assert.ok(fixture.date);
+      assert.ok(fixture.uuid);
     });
 
-    it('should not generate pri keys', function () {
+    it('should not generate autoIncrement keys', function () {
       var fixture = Foo.fixtures();
-      assert.throws(fixture.id);
+      assert.equal(fixture.id, null);
+    });
+
+    it('should generate autoIncrement keys when user want', function () {
+      var fixture = Foo.fixtures({gen_auto_increment: true});
+      assert.ok(fixture.id);
     });
   });
 
