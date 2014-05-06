@@ -72,4 +72,19 @@ describe('Models', function () {
     });
   });
 
+  describe('multi data generate', function () {
+    it('should generate multi datas when user want', function () {
+      var Foo = sequelize.define('Foo', { });
+      var fixture = Foo.fixtures({num: 10});
+      assert.ok(fixture instanceof Array);
+      assert.equal(fixture.length, 10);
+    });
+
+    it('should param is num only', function () {
+      var Foo = sequelize.define('Foo', { });
+      var fixture = Foo.fixtures(10);
+      assert.ok(fixture instanceof Array);
+      assert.equal(fixture.length, 10);
+    });
+  });
 });
