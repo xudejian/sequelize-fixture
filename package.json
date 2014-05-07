@@ -1,6 +1,6 @@
 {
   "name": "sequelize-fixture",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "util for building sequelize model fixtures, mostly useful for setting up test data.",
   "keywords": [
     "factory",
