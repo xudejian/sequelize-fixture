@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "mocha": "~1.18.2",
-    "sequelize": "~1.7.3"
+    "sequelize": "~1.7.3",
+    "sqlite3": "^2.2.3"
   },
   "repository": {
     "type": "git",

@@ -25,7 +25,7 @@ describe('Models', function () {
       assert.ok(fixture.title);
       assert.ok(fixture.string);
       assert.ok(fixture.text);
-      assert.ok(fixture.hasOwnProperty('bool'));
+      assert.equal(typeof fixture.bool, 'boolean');
       assert.ok(fixture.num);
       assert.ok(fixture.bignum);
       assert.ok(fixture.float);
@@ -80,11 +80,39 @@ describe('Models', function () {
       assert.equal(fixture.length, 10);
     });
 
-    it('should param is num only', function () {
+    it('should work when optons is a num', function () {
       var Foo = sequelize.define('Foo', { });
       var fixture = Foo.fixtures(10);
       assert.ok(fixture instanceof Array);
       assert.equal(fixture.length, 10);
+    });
+  });
+
+  describe('associate support', function() {
+    var User, Project, Task;
+    before(function(done) {
+      User = sequelize.define('User', { });
+      Project = sequelize.define('Project', { });
+      Task = sequelize.define('Task', { });
+      Project.hasMany(Task);
+      Task.belongsTo(User);
+
+      sequelize.sync({force:true}).success(function() {
+        done();
+      });
+    });
+
+    it('should create associate data given options.include', function (done) {
+      var fixture = Project.fixtures({
+        include: [{
+          model: Task
+        }]
+      }).success(function(projects) {
+        for (var i in projects) {
+          assert.ok(projects[i].tasks);
+        }
+        done();
+      });
     });
   });
 });
