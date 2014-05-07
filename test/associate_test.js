@@ -39,6 +39,22 @@ describe('associate support', function () {
     });
   });
 
+  it('should generate multi data when associate hasMany', function (done) {
+    var fixture = Project.fixtures({
+      include: [{
+        model: Task,
+        fixture: {
+          num: 10
+        }
+      }]
+    }).success(function(projects) {
+      for (var i in projects) {
+        assert.equal(projects[i].tasks.length, 10);
+      }
+      done();
+    });
+  });
+
   it('should support hasOne', function (done) {
     var fixture = User.fixtures({
       include: [{
