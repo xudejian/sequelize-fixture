@@ -25,4 +25,17 @@ describe('.fixtures', function () {
     });
   });
 
+  describe('options', function () {
+    it('should regard options.define as generate define for item', function () {
+      var fixt = Foo.fixtures({
+        define: {
+          title: function() {
+            return 'yo';
+          }
+        }
+      });
+      assert.equal(fixt.title, 'yo');
+    });
+  });
+
 });
