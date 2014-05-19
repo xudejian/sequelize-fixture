@@ -36,6 +36,15 @@ describe('.fixtures', function () {
       });
       assert.equal(fixt.title, 'yo');
     });
+
+    it('should generate null when user want', function () {
+      var fixt = Foo.fixtures({
+        define: {
+          title: null
+        }
+      });
+      assert.equal(fixt.title, null);
+    });
   });
 
 });
