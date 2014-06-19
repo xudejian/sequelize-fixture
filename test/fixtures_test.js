@@ -8,7 +8,8 @@ describe('.fixtures', function () {
   'use strict';
 
   var Foo = sequelize.define('Foo', {
-    title: Sequelize.STRING
+    title: Sequelize.STRING,
+    num: Sequelize.INTEGER
   });
 
   describe('bind in every model', function () {
@@ -35,6 +36,15 @@ describe('.fixtures', function () {
         }
       });
       assert.equal(fixt.title, 'yo');
+    });
+
+    it('should generate 0 when user want', function () {
+      var fixt = Foo.fixtures({
+        define: {
+          num: 0
+        }
+      });
+      assert.equal(fixt.num, 0);
     });
 
     it('should generate null when user want', function () {
