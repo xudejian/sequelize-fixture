@@ -1,3 +1,1 @@
-module.exports = process.env.COV
-  ? require('./lib-cov')
-  : require('./lib');
+module.exports = require('./lib');

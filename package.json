@@ -16,6 +16,8 @@
     "casual": "~1.4.6"
   },
   "devDependencies": {
+    "blanket": "~1.1.6",
+    "travis-cov": "~0.2.5",
     "mocha": "~1.18.2",
     "sequelize": "~1.7.3",
     "sqlite3": "~2.2.3"
@@ -24,7 +26,14 @@
     "type": "git",
     "url": "git://github.com/xudejian/sequelize-factory.git"
   },
+  "config": {
+    "travis-cov": { "threshold": 70 },
+    "blanket": {
+      "pattern": "//^((?!/node_modules/)(?!/test/).)*$/ig"
+    }
+  },
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec && NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter travis-cov",
+    "test-cov-report": "NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter html-cov > coverage.html && open coverage.html"
   }
 }
