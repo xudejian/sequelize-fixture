@@ -1,4 +1,13 @@
 
+0.1.3 / 2014-07-16
+==================
+
+ * Fix url for npmjs.org in package.json
+ * add coverage
+ * add test
+ * should generate null when user want
+ * refactor custom_gen
+
 0.1.2 / 2014-05-18
 ==================
 
